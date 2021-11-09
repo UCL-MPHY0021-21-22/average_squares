@@ -10,9 +10,11 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
-# import sys
-# sys.path.insert(0, os.path.abspath('.'))
+import os
+import sys
+# sys.path.insert(0, os.path.abspath('.')) # here (in docs)
+sys.path.insert(0, os.path.abspath('..')) # one back (in average_squares) where squares.py lives
+
 
 
 # -- Project information -----------------------------------------------------
@@ -22,7 +24,7 @@ copyright = '2021, MPHY0021'
 author = 'MPHY0021'
 
 # The full version, including alpha/beta/rc tags
-release = 'N/A'
+release = '0.1'
 
 
 # -- General configuration ---------------------------------------------------
@@ -31,6 +33,7 @@ release = 'N/A'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    'sphinx.ext.autodoc'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -46,7 +49,7 @@ language = 'English'
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = []
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 
 # -- Options for HTML output -------------------------------------------------
