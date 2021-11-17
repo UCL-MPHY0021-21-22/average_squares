@@ -10,6 +10,8 @@ Welcome to create_doc's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   content 
+
 This is the documentation for the average_squares() and convert_string() functions.
 
 Indices and tables
