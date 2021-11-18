@@ -25,7 +25,7 @@ def average_of_squares(list_of_numbers, list_of_weights=None):
     else:
         effective_weights = [1] * len(list_of_numbers)
     squares = [
-        weight * number * number
+        weight * number * number / len(effective_weights)
         for number, weight
         in zip(list_of_numbers, effective_weights)
     ]
