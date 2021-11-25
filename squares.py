@@ -53,11 +53,11 @@ def convert_numbers(list_of_strings):
 if __name__ == "__main__":
     parser = ArgumentParser(description = "Generate approporate numbers")
     #numbers_strings = ["1","2","4"]
-    weight_strings = ["1","1","1"]        
+    #weight_strings = ["1","1","1"]        
     parser.add_argument('numbers',nargs = '*', type = float) #n is argument number
-    #parser.add_argument('--weights','-w')
+    parser.add_argument('--weights',nargs = '*', type = float)
     #numbers = convert_numbers(numbers_strings)
-    weights = convert_numbers(weight_strings)
+    #weights = convert_numbers(weight_strings)
     argument = parser.parse_args()
-    result = average_of_squares(argument.numbers, weights)
+    result = average_of_squares(argument.numbers, argument.weights)
     print(result)
