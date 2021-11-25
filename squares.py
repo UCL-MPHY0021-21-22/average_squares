@@ -1,5 +1,6 @@
 """Computation of weighted average of squares."""
 
+import argparse as ap
 
 def average_of_squares(list_of_numbers, list_of_weights=None):
     """ Return the weighted average of a list of values.
@@ -16,7 +17,6 @@ def average_of_squares(list_of_numbers, list_of_weights=None):
     >>> average_of_squares([1, 2, 4], [1, 0.5])
     Traceback (most recent call last):
     AssertionError: weights and numbers must have same length
-
     """
     if list_of_weights is not None:
         assert len(list_of_weights) == len(list_of_numbers), \
@@ -39,7 +39,6 @@ def convert_numbers(list_of_strings):
     --------
     >>> convert_numbers(["4", " 8 ", "15 16", " 23    42 "])
     [4, 8, 15, 16]
-
     """
     all_numbers = []
     for s in list_of_strings:
@@ -51,12 +50,20 @@ def convert_numbers(list_of_strings):
 
 
 if __name__ == "__main__":
-    numbers_strings = ["1","2","4"]
-    weight_strings = ["1","1","1"]        
+    #numbers_strings = ["1","2","4"]
+    #weight_strings = ["1","1","1"]        
     
-    numbers = convert_numbers(numbers_strings)
-    weights = convert_numbers(weight_strings)
+    #numbers = convert_numbers(numbers_strings)
+    #weights = convert_numbers(weight_strings)
     
-    result = average_of_squares(numbers, weights)
+    #result = average_of_squares(numbers, weights)
     
-    print(result)
+    parser = ap.ArgumentParser(description='Computation of weighted average of squares')
+    parser.add_argument('numbers_strings',help='Input list of number strings to be average squared')
+    parser.add_argument('weight_strings',help='Input list of weighted strings to be weight number list')
+    arguments = parser.parse_args()
+
+
+
+
+    #print(result)
