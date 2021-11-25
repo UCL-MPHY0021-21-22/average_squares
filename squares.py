@@ -1,3 +1,4 @@
+from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 """Computation of weighted average of squares."""
 
 
@@ -10,9 +11,9 @@ def average_of_squares(list_of_numbers, list_of_weights=None):
     Example:
     --------
     >>> average_of_squares([1, 2, 4])
-    7.0
+    21
     >>> average_of_squares([2, 4], [1, 0.5])
-    6.0
+    12.0
     >>> average_of_squares([1, 2, 4], [1, 0.5])
     Traceback (most recent call last):
     AssertionError: weights and numbers must have same length
@@ -38,7 +39,7 @@ def convert_numbers(list_of_strings):
     Example:
     --------
     >>> convert_numbers(["4", " 8 ", "15 16", " 23    42 "])
-    [4, 8, 15, 16]
+    [4, 8, 15, 16, 23, 42]
 
     """
     all_numbers = []
@@ -47,16 +48,21 @@ def convert_numbers(list_of_strings):
         # whitespace, and collect them into a single list...
         all_numbers.extend([token.strip() for token in s.split()])
     # ...then convert each substring into a number
-    return [float(number_string) for number_string in all_numbers]
+    return [int(number_string) for number_string in all_numbers]
 
 
 if __name__ == "__main__":
-    numbers_strings = ["1","2","4"]
-    weight_strings = ["1","1","1"]        
-    
-    numbers = convert_numbers(numbers_strings)
-    weights = convert_numbers(weight_strings)
-    
-    result = average_of_squares(numbers, weights)
-    
-    print(result)
+    numbers_strings = convert_numbers(["1","2","4"])
+    weight_strings = convert_numbers(["1","1","1"])    
+
+    parser = ArgumentParser(description="Calculates the average of squares.")
+
+    parser.add_argument('--list_of_numbers', nargs='*', default=numbers_strings,
+                        help="Input list of numbers")
+
+    parser.add_argument('--list_of_weights', nargs = '*', default=weight_strings,
+                        help="Input list of weights")
+
+    arguments = parser.parse_args()
+
+    print(average_of_squares(convert_numbers(arguments.list_of_numbers), convert_numbers(arguments.list_of_weights)))
