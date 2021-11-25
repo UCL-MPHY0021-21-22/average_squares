@@ -1,5 +1,7 @@
 """Computation of weighted average of squares."""
 
+from argparse import ArgumentParser
+
 
 def average_of_squares(list_of_numbers, list_of_weights=None):
     """ Return the weighted average of a list of values.
@@ -49,24 +51,23 @@ def convert_numbers(list_of_strings):
     # ...then convert each substring into a number
     return [int(number_string) for number_string in all_numbers]
 
-
 if __name__ == "__main__":
-    # numbers_strings = ["1","2","4"]
-    # weight_strings = ["1","1","1"]        
-    
-    # numbers = convert_numbers(numbers_strings)
-    # weights = convert_numbers(weight_strings)
-    
-    # result = average_of_squares(numbers, weights)
-    
-    # print(result)
     parser = ArgumentParser(description="compute average of squares")
-    parser.add_argument('--numbers', '-n', nargs='+')
-    parser.add_argument('--weights','-w', nargs='+')
+    parser.add_argument('--number_file', '-n')
+    parser.add_argument('--weight_file','-w')
     arguments= parser.parse_args()
 
-    numbers = convert_numbers(arguments.numbers)
-    weights = convert_numbers(arguments.weights)
+    with open(arguments.number_file, 'r') as file:
+    # with open("numbers.txt", 'r') as file:
+        for line in file:
+            numbers = convert_numbers(line.strip())
+
+    with open(arguments.weight_file, 'r') as file:
+        for line in file:
+            weights = convert_numbers(line.strip())
+
     message = average_of_squares(numbers, weights)
 
     print(message)
+
+        
